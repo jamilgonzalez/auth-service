@@ -10,7 +10,7 @@ const addUser = (user) => {
 
 const update = (email, userUpdate) => {
   const { field, value } = userUpdate;
-  console.log("here", field, value);
+
   const oldInfo = users.get(email);
 
   let update;

@@ -1,7 +1,5 @@
 const users = new Map();
 
-console.log(users);
-
 const searchUser = (email) => {
   return users.get(email);
 };

@@ -1,17 +1,43 @@
-module.exports = searchUser = (email) => {
-  const user = localStorage.getItem(email);
-  console.log("LOCAL SEARCH", user);
+const users = new Map();
+
+console.log(users);
+
+const searchUser = (email) => {
+  return users.get(email);
 };
 
-module.exports = addUser = (user) => {
-  localStorage.setItem(user.email, JSON.stringify(user));
-  console.log(localStorage.getItem(user.email));
+const addUser = (user) => {
+  users.set(user.email, user);
 };
 
-module.exports = update = (email, userUpdate) => {
-  console.log("TODO");
+const update = (email, userUpdate) => {
+  const { field, value } = userUpdate;
+  console.log("here", field, value);
+  const oldInfo = users.get(email);
+
+  let update;
+
+  switch (field) {
+    case "email":
+      update = { ...oldInfo, email: value };
+      break;
+    case "emailVerified":
+      update = { ...oldInfo, emailVerified: value };
+      break;
+    case "password":
+      update = { ...oldInfo, password: value };
+      break;
+    case "ttl":
+      const { email, password, isAdmin } = oldInfo;
+      update = { email, password, emailVerified: true, isAdmin };
+      break;
+  }
+  users.delete(email);
+  users.set(email, update);
 };
 
-module.exports = deleteUser = (email) => {
-  localStorage.removeItem(email);
+const deleteUser = (email) => {
+  users.delete(email);
 };
+
+module.exports = { addUser, deleteUser, update, searchUser };

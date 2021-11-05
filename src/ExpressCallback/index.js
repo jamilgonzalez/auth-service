@@ -5,7 +5,7 @@ module.exports = function makeExpressCallback(controller) {
     response?.url
       ? res.status(response.status).redirect(response.url)
       : res.status(response.status).json({
-          body: response?.body,
+          token: response?.token,
           message: response?.message,
           error: response.error,
         });

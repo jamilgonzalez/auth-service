@@ -4,10 +4,8 @@ module.exports = function makeLoginUser(db, jwt, crypt) {
   return async function loginUser(userData) {
     const { email, password } = userData;
 
-    const result = await db.get(email);
-    if (result?.Count === 0) throw Format.notFound(`${email} not found.`);
-
-    const user = result?.Items[0];
+    const user = await db.get(email);
+    if (user === undefined) throw Format.notFound(`${email} not found.`);
 
     if (!user.emailVerified) throw Format.badRequest("please verify email.");
 

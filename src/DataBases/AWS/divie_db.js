@@ -16,7 +16,8 @@ const searchUser = async (email) => {
   };
 
   try {
-    return await docClient.query(params).promise();
+    const result = await docClient.query(params).promise();
+    return result?.Items[0];
   } catch (error) {
     console.log(`error searching user in divieDB: ${error}`);
     throw Format.unexpectedError("unexpected error searching user.");

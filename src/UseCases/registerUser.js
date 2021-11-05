@@ -7,7 +7,8 @@ module.exports = function makeRegisterUser(db, jwt, mailer) {
 
     const queryResult = await db.get(newUser.getEmail());
 
-    if (queryResult?.Count > 0) throw Format.conflict("user already exists.");
+    if (queryResult !== undefined)
+      throw Format.conflict("user already exists.");
 
     await db.put({
       email: newUser.getEmail(),

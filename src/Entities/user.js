@@ -7,7 +7,7 @@ function makeCreateUser(encrypt) {
     return Object.freeze({
       getEmail: () => userData.email,
       getPassword: () => encrypt.hash(userData.password),
-      getIsAdmin: () => userData.isAdmin,
+      getIsAdmin: () => userData.isAdmin ?? false,
       getEmailVerified: () => false,
       getTTL: () => tomorrow,
     });

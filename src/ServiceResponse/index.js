@@ -1,7 +1,12 @@
 class HttpResponse {
   format(status, body, message, error) {
     const responseItems = { status, body, message, error };
-    return responseItems;
+    return {
+      status,
+      message,
+      error,
+      ...body,
+    };
   }
 
   success(message, body) {

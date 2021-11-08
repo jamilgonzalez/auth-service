@@ -1,4 +1,4 @@
-const { addUser, deleteUser, searchUser, update } = require("./local/divie_db");
+const { addUser, deleteUser, searchUser, update } = require("./AWS/divie_db");
 
 const addExpiredToken = require("./AWS/expired_jwt");
 

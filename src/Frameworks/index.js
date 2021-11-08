@@ -1,4 +1,4 @@
-const crypt = require("./crypto");
+const crypt = require("./bcrypt");
 const jsonWebToken = require("./jsonWebToken");
 const mailer = require("./nodeMailer");
 const validate = require("./joi");

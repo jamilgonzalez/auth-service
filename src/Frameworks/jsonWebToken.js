@@ -6,7 +6,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const sign = (userData) => {
   const { email, isAdmin } = userData;
   return jwt.sign({ email: email, isAdmin: isAdmin }, JWT_SECRET, {
-    expiresIn: "2h",
+    expiresIn: "24h",
   });
 };
 
